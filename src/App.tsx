@@ -31,15 +31,14 @@ function App() {
 
   const onSubmitHandler = () => {
     try {
+
       const n1 = parseFloat(num1);
       const n2 = parseFloat(num2);
 
       if (isNaN(n1) || isNaN(n2)) {
-        console.log('Parsing Error');
-        setResult("Error");
-        return;
+        throw new Error("Error while parsing");
       }
-
+      
       const res = calculateResult(n1, n2, operation);
       setResult(res.toString());
     } catch (e) {
@@ -56,28 +55,28 @@ function App() {
         </div>
         <div className='container__form__num1-div'>
           <label> Number 1: </label>
-          <input type="text" value={num1} onChange={(e) => { setNum1(e.target.value) }} placeholder="Enter number 1" />
+          <input id='num1' type="text" value={num1} onChange={(e) => { setNum1(e.target.value) }} placeholder="Enter number 1" />
         </div>
         <div className='container__form__num2-div'>
           <label> Number 2: </label>
-          <input type="text" value={num2} onChange={(e) => { setNum2(e.target.value) }} placeholder="Enter number 2" />
+          <input id='num2' type="text" value={num2} onChange={(e) => { setNum2(e.target.value) }} placeholder="Enter number 2" />
         </div>
         <div className='container__form__operation-div' >Operations: </div>
         <div className='container__form__radio-div'>
           <div>
-            <input type="radio" name="operation" value="add" defaultChecked onClick={(e) => { setOperation(e.currentTarget.value as Operation) }} />
+            <input id='radio-add' type="radio" name="operation" value="add" defaultChecked onClick={(e) => { setOperation(e.currentTarget.value as Operation) }} />
             <label>Add</label>
           </div>
           <div>
-            <input type="radio" name="operation" value="sub" onClick={(e) => { setOperation(e.currentTarget.value as Operation) }} />
+            <input id='radio-sub' type="radio" name="operation" value="sub" onClick={(e) => { setOperation(e.currentTarget.value as Operation) }} />
             <label>Subtract</label>
           </div>
           <div>
-            <input type="radio" name="operation" value="mul" onClick={(e) => { setOperation(e.currentTarget.value as Operation) }} />
+            <input id='radio-mul' type="radio" name="operation" value="mul" onClick={(e) => { setOperation(e.currentTarget.value as Operation) }} />
             <label>Multiply</label>
           </div>
           <div>
-            <input type="radio" name="operation" value="div" onClick={(e) => { setOperation(e.currentTarget.value as Operation) }} />
+            <input id='radio-div' type="radio" name="operation" value="div" onClick={(e) => { setOperation(e.currentTarget.value as Operation) }} />
             <label>Divide</label>
           </div>
         </div>
